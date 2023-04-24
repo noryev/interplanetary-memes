@@ -2,12 +2,31 @@
 <html>
 
 <head>
-    <title>Interplanetary Memes</title>
+    <title>GitHub Images</title>
 </head>
 
 <body>
-    <h1>Interplanetary Memes</h1>
-    <img src="https://github.com/noryev/interplanetary-memes/blob/main/memes/chosen.png?raw=true" alt="Image">
+    <h1>Images from GitHub</h1>
+    <div id="image-gallery"></div>
+
+    <script>
+        const folderPath = "/memes"; // replace with your folder path
+        const username = "noryev"; // replace with your GitHub username
+        const repoName = "interplanetary-memes"; // replace with your repository name
+
+        fetch(`https://api.github.com/repos/${username}/${repoName}/contents/${folderPath}`)
+            .then(response => response.json())
+            .then(data => {
+                const images = data.filter(file => file.type === "file" && file.name.match(/\.(jpeg|jpg|gif|png)$/i));
+
+                const galleryDiv = document.getElementById("image-gallery");
+                images.forEach(image => {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = image.download_url;
+                    galleryDiv.appendChild(imgElement);
+                });
+            });
+    </script>
 </body>
 
-</html>
+</html>z
