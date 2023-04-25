@@ -72,7 +72,12 @@
                 images.forEach(image => {
                     const imgElement = document.createElement("img");
                     imgElement.src = image.download_url;
-                    galleryDiv.appendChild(imgElement);
+
+                    const anchorElement = document.createElement("a");
+                    anchorElement.href = image.download_url;
+                    anchorElement.appendChild(imgElement);
+
+                    galleryDiv.appendChild(anchorElement);
                 });
             });
     </script>
