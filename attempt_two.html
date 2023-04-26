@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interplanetary Memes</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: sans-serif;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            padding: 10px;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Interplanetary Memes</h1>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        const GITHUB_REPO_API = 'https://api.github.com/repos/noryev/interplanetary-memes/contents/memes';
+
+        async function fetchImages() {
+            try {
+                const response = await fetch(GITHUB_REPO_API);
+                const data = await response.json();
+                const gallery = document.getElementById('gallery');
+
+                data.forEach(image => {
+                    if (image.type === 'file' && (image.name.endsWith('.jpg') || image.name.endsWith('.jpeg') || image.name.endsWith('.png'))) {
+                        const item = document.createElement('div');
+                        item.classList.add('gallery-item');
+
+                        const link = document.createElement('a');
+                        link.href = image.download_url;
+                        link.target = '_blank';
+
+                        const img = document.createElement('img');
+                        img.src = image.download_url;
+                        img.alt = image.name;
+
+                        link.appendChild(img);
+                        item.appendChild(link);
+                        gallery.appendChild(item);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        }
+
+        fetchImages();
+    </script>
+</body>
+
+</html>
