@@ -4,82 +4,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPFSMemes</title>
+    <title>Interplanetary Memes</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <style>
-        * {
+        body,
+        html {
+            height: 100%;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        #image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-gap: 15px;
-            width: 100%;
-            max-width: 1200px;
-            position: relative;
+            align-items: center;
         }
 
         img {
             width: 100%;
             height: auto;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
 
-        img:hover {
-            transform: scale(1.4);
-            cursor: pointer;
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .gallery-item {
+            padding: 10px;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
     <h1>Interplanetary Memes</h1>
-    <div id="image-gallery"></div>
+    <div class="gallery" id="gallery"></div>
 
     <script>
-        const folderPath = "/memes"; // replace with your folder path
-        const username = "noryev"; // replace with your GitHub username
-        const repoName = "interplanetary-memes"; // replace with your repository name
+        const GITHUB_REPO_API = 'https://api.github.com/repos/noryev/interplanetary-memes/contents/memes';
 
-        fetch(`https://api.github.com/repos/${username}/${repoName}/contents/${folderPath}`)
-            .then(response => response.json())
-            .then(data => {
-                const images = data.filter(file => file.type === "file" && file.name.match(/\.(jpeg|jpg|gif|png)$/i));
+        async function fetchImages() {
+            try {
+                const response = await fetch(GITHUB_REPO_API);
+                const data = await response.json();
+                const gallery = document.getElementById('gallery');
 
-                const galleryDiv = document.getElementById("image-gallery");
-                images.forEach(image => {
-                    const imgElement = document.createElement("img");
-                    imgElement.src = image.download_url;
+                data.forEach(image => {
+                    if (image.type === 'file' && (image.name.endsWith('.jpg') || image.name.endsWith('.jpeg') || image.name.endsWith('.png'))) {
+                        const item = document.createElement('div');
+                        item.classList.add('gallery-item');
 
-                    const anchorElement = document.createElement("a");
-                    anchorElement.href = image.download_url;
-                    anchorElement.appendChild(imgElement);
+                        const link = document.createElement('a');
+                        link.href = image.download_url;
+                        link.target = '_blank';
 
-                    galleryDiv.appendChild(anchorElement);
+                        const img = document.createElement('img');
+                        img.src = image.download_url;
+                        img.alt = image.name;
+
+                        link.appendChild(img);
+                        item.appendChild(link);
+                        gallery.appendChild(item);
+                    }
                 });
-            });
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        }
+
+        fetchImages();
     </script>
 </body>
 
