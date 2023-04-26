@@ -62,35 +62,51 @@
 
     <script>
         const GITHUB_REPO_API = 'https://api.github.com/repos/noryev/interplanetary-memes/contents/memes';
+        const IMAGES_PER_LOAD = 12;
+        let allImages = [];
+        let currentImageIndex = 0;
 
         async function fetchImages() {
             try {
                 const response = await fetch(GITHUB_REPO_API);
                 const data = await response.json();
-                const gallery = document.getElementById('gallery');
-
-                data.forEach(image => {
-                    if (image.type === 'file' && (image.name.endsWith('.jpg') || image.name.endsWith('.jpeg') || image.name.endsWith('.png'))) {
-                        const item = document.createElement('div');
-                        item.classList.add('gallery-item');
-
-                        const link = document.createElement('a');
-                        link.href = image.download_url;
-                        link.target = '_blank';
-
-                        const img = document.createElement('img');
-                        img.src = image.download_url;
-                        img.alt = image.name;
-
-                        link.appendChild(img);
-                        item.appendChild(link);
-                        gallery.appendChild(item);
-                    }
-                });
+                allImages = data.filter(image => image.type === 'file' && (image.name.endsWith('.jpg') || image.name.endsWith('.jpeg') || image.name.endsWith('.png')));
+                loadImages();
             } catch (error) {
                 console.error('Error fetching images:', error);
             }
         }
+
+        function loadImages() {
+            const gallery = document.getElementById('gallery');
+            for (let i = 0; i < IMAGES_PER_LOAD && currentImageIndex < allImages.length; i++, currentImageIndex++) {
+                const image = allImages[currentImageIndex];
+                const item = document.createElement('div');
+                item.classList.add('gallery-item');
+
+                const link = document.createElement('a');
+                link.href = image.download_url;
+                link.target = '_blank';
+
+                const img = document.createElement('img');
+                img.src = image.download_url;
+                img.alt = image.name;
+
+                link.appendChild(img);
+                item.appendChild(link);
+                gallery.appendChild(item);
+            }
+        }
+
+        function isScrolledToBottom() {
+            return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (isScrolledToBottom()) {
+                loadImages();
+            }
+        });
 
         fetchImages();
     </script>
