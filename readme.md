@@ -1,4 +1,4 @@
-# Interplanetary Memes: WIP
+# Planet Memes: WIP
 
 Currently the location of this page resides here: https://bafybeihhgxbaywvizkcfqxdgfbu5ys242xxc4wiv5y7tykmfzp5qwyrtlq.ipfs.w3s.link/
 
