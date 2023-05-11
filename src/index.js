@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css'; // put your CSS here
+import './app.css'; // put your CSS here
 
 function App() {
     const memes = [ // you would replace this with the URLs of your images
