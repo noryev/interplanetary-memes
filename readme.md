@@ -11,9 +11,9 @@ I have a github repo. When I save photos to a folder in the github repo, I want 
 
 ## Install
 
--npm install
+- npm install
 
--npm start
+- npm start
 
 ## Essentially- 
 I want to make this a super easy place to save cool memes in, and it gets added to ipfs and displayed in this easy to find page(add IPNSS, probably with Cloudflare). 
