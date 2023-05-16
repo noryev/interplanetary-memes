@@ -16,6 +16,6 @@ I have a github repo. When I save photos to a folder in the github repo, I want 
 - npm start
 
 ## Essentially- 
-I want to make this a super easy place to save cool memes in, and it gets added to ipfs and displayed in this easy to find page(add IPNSS, probably with Cloudflare). 
+I want to make this a super easy place to save cool memes in, and it gets added to ipfs and displayed in this easy to find page(add IPNS, probably with Cloudflare). 
 
 Later we can add much cooler features ect. 
