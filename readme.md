@@ -1,4 +1,4 @@
-# Planet Memes: WIP
+# InterplanetaryMemes: WIP
 
 Currently the location of this page resides here: https://bafybeihhgxbaywvizkcfqxdgfbu5ys242xxc4wiv5y7tykmfzp5qwyrtlq.ipfs.w3s.link/
 
@@ -19,3 +19,4 @@ I have a github repo. When I save photos to a folder in the github repo, I want 
 I want to make this a super easy place to save cool memes in, and it gets added to ipfs and displayed in this easy to find page(add IPNS, probably with Cloudflare). 
 
 Later we can add much cooler features ect. 
+
