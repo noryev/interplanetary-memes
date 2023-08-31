@@ -1,6 +1,6 @@
 # InterplanetaryMemes: WIP
 
-Currently the location of this page resides here: https://https://bafybeicr2x7f35odaw2gpfx4gq7fbhnv2vmskvjve3yhtf2l3bvepfu47q.ipfs.w3s.link/
+Currently the location of this page resides here: https://bafybeicr2x7f35odaw2gpfx4gq7fbhnv2vmskvjve3yhtf2l3bvepfu47q.ipfs.w3s.link/
 
 ## Basics
 
