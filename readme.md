@@ -2,6 +2,8 @@
 
 Currently the location of this page resides here: https://bafybeicr2x7f35odaw2gpfx4gq7fbhnv2vmskvjve3yhtf2l3bvepfu47q.ipfs.w3s.link/
 
+Leto Address leto.gg/ipfs/bafybeicr2x7f35odaw2gpfx4gq7fbhnv2vmskvjve3yhtf2l3bvepfu47q
+
 ## Basics
 
 I want to make this simple for people as possible. 
