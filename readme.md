@@ -1,7 +1,6 @@
 # InterplanetaryMemes: WIP
 
-Currently the location of this page resides here: https://leto.gg/ipfs/bafybeicr2x7f35odaw2gpfx4gq7fbhnv2vmskvjve3yhtf2l3bvepfu47q
-
+Currently the location of this page resides here: https://bafybeib3pyoo7wbkma64fvjzg6yxdbiyh5b4nhflhwzil7bnnf3vxwjyim.ipfs.sphn.link/
 
 ## Basics
 
