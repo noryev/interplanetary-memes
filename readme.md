@@ -21,3 +21,7 @@ I want to make this a super easy place to save cool memes in, and it gets added 
 
 Later we can add much cooler features ect. 
 
+
+## Notes 
+
+Due to the assignments each coming from an external gateway, running this in development mode means the images do not load when network is down. How could we make this work? Maybe this is more of a question how you host these types of website. 
